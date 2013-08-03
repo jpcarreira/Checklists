@@ -56,7 +56,7 @@ NSMutableArray *items;
     item.isChecked = YES;
     [items addObject:item];
     
-    /*
+    
     item = [[ChecklistItem alloc] init];
     item.text = @"Soccer practice";
     item.isChecked = NO;
@@ -67,6 +67,7 @@ NSMutableArray *items;
     item.isChecked = NO;
     [items addObject:item];
     
+    /*
     item = [[ChecklistItem alloc] init];
     item.text = @"Call dad";
     item.isChecked = YES;
@@ -211,6 +212,20 @@ NSMutableArray *items;
     
     // adding the new row to the table view
     [self.tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+/**
+ * swipe-to-delete (using the built-in method)
+ */
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // removing the object from the data model
+    [items removeObjectAtIndex:indexPath.row];
+    
+    // removing the corresponing row
+    NSArray *newIndexPath = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:newIndexPath withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end
