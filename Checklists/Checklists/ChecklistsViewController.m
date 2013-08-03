@@ -40,28 +40,52 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/* Table View Data Source Protocol */
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
+// tells the table view the number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 5;
 }
 
+// gets a cell for a given row
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // gets a copy of the prototype cell
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     
-    // Configure the cell...
+    UILabel *label = (UILabel *) [cell viewWithTag:1000];
+    
+    if(indexPath.row == 0)
+    {
+        label.text = @"Walk with dog";
+    }
+    else if(indexPath.row == 1)
+    {
+        label.text = @"Learn iOS development";
+    }
+    else if(indexPath.row == 2)
+    {
+        label.text = @"Brush my teeth";
+    }
+    else if(indexPath.row == 3)
+    {
+        label.text = @"Soccer practice";
+    }
+    else if(indexPath.row == 4)
+    {
+        label.text = @"Eat icecream";
+    }
+    
     
     return cell;
 }
