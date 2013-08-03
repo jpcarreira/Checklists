@@ -14,6 +14,9 @@
 
 @implementation ChecklistsViewController
 
+ChecklistItem *row0Item, *row1Item, *row2Item, *row3Item, *row4Item;
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -27,11 +30,26 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // initializing objects
+    row0Item = [[ChecklistItem alloc] init];
+    row0Item.text = @"Walk the dog";
+    row0Item.isChecked = NO;
+    
+    row1Item = [[ChecklistItem alloc] init];
+    row1Item.text = @"Brush my teeth";
+    row1Item.isChecked = YES;
+    
+    row2Item = [[ChecklistItem alloc] init];
+    row2Item.text = @"Learn iOS Development";
+    row2Item.isChecked = YES;
+    
+    row3Item = [[ChecklistItem alloc] init];
+    row3Item.text = @"Soccer practice";
+    row3Item.isChecked = NO;
+    
+    row4Item = [[ChecklistItem alloc] init];
+    row4Item.text = @"Eat ice cream";
+    row4Item.isChecked = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,88 +83,110 @@
     
     UILabel *label = (UILabel *) [cell viewWithTag:1000];
     
+    // setting the cell's label text
     if(indexPath.row == 0)
     {
-        label.text = @"Walk with dog";
+        label.text = row0Item.text;
     }
     else if(indexPath.row == 1)
     {
-        label.text = @"Learn iOS development";
+        label.text = row1Item.text;
     }
     else if(indexPath.row == 2)
     {
-        label.text = @"Brush my teeth";
+        label.text = row2Item.text;
     }
     else if(indexPath.row == 3)
     {
-        label.text = @"Soccer practice";
+        label.text = row3Item.text;
     }
     else if(indexPath.row == 4)
     {
-        label.text = @"Eat icecream";
+        label.text = row4Item.text;
     }
+    
+    // setting the cell's checkmark
+    [self configureCheckMarkForCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
+/**
+ * changes checkmark in a given cell
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    // adds checkmark
-    if(cell.accessoryType == UITableViewCellAccessoryNone)
+    if(indexPath.row == 0)
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        row0Item.isChecked = !row0Item.isChecked;
     }
-    // removes checkmark
-    else if(cell.accessoryType == UITableViewCellAccessoryCheckmark)
+    else if(indexPath.row == 1)
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        row1Item.isChecked = !row1Item.isChecked;
     }
+    else if(indexPath.row == 2)
+    {
+        row2Item.isChecked = !row2Item.isChecked;
+    }
+    else if(indexPath.row == 3)
+    {
+        row3Item.isChecked = !row3Item.isChecked;
+    }
+    else if(indexPath.row == 4)
+    {
+        row4Item.isChecked = !row4Item.isChecked;
+    }
+    
+    [self configureCheckMarkForCell:cell atIndexPath:indexPath];
     
     // deselects the tapped row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+/**
+ * configures the checkmark for a given cell
+ */
+- (void)configureCheckMarkForCell:(UITableViewCell *) cell atIndexPath:(NSIndexPath *) indexPath
+{
+    // local variable to store checked status
+    BOOL isChecked = NO;
+    
+    // getting the corresponsping object and storing isChecked attribute in local variable
+    if(indexPath.row == 0)
+    {
+        isChecked = row0Item.isChecked;
+    }
+    else if(indexPath.row == 1)
+    {
+        isChecked = row1Item.isChecked;
+    }
+    else if(indexPath.row == 2)
+    {
+        isChecked = row2Item.isChecked;
+    }
+    else if(indexPath.row == 3)
+    {
+        isChecked = row3Item.isChecked;
+    }
+    else if(indexPath.row == 4)
+    {
+        isChecked = row4Item.isChecked;
+    }
+    
+    // setting the cell accessory type according to the local variable
+    if(isChecked)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 }
 
 @end
