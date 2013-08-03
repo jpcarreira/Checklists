@@ -126,13 +126,11 @@ NSMutableArray *items;
     
     ChecklistItem *item = [items objectAtIndex:indexPath.row];
     
-    UILabel *label = (UILabel *) [cell viewWithTag:1000];
-    
-    // setting the cells's label text
-    label.text = item.text;
+    // setting the cell's text
+    [self configureTextForCell:cell withChecklistItem:item];
     
     // setting the cell's checkmark
-    [self configureCheckMarkForCell:cell atIndexPath:indexPath];
+    [self configureCheckMarkForCell:cell withChecklistItem:item];
     
     return cell;
 }
@@ -149,9 +147,10 @@ NSMutableArray *items;
     
     ChecklistItem *item = [items objectAtIndex:indexPath.row];
     
-    item.isChecked = !item.isChecked;
+    // changes the checkmark
+    [item toggleChecked];
     
-    [self configureCheckMarkForCell:cell atIndexPath:indexPath];
+    [self configureCheckMarkForCell:cell withChecklistItem:item];
     
     // deselects the tapped row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -161,10 +160,8 @@ NSMutableArray *items;
 /**
  * configures the checkmark for a given cell
  */
-- (void)configureCheckMarkForCell:(UITableViewCell *) cell atIndexPath:(NSIndexPath *) indexPath
+- (void)configureCheckMarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
-    ChecklistItem *item = [items objectAtIndex:indexPath.row];
-    
     // setting the cell accessory type according to the local variable
     if(item.isChecked)
     {
@@ -174,6 +171,12 @@ NSMutableArray *items;
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+-(void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *) item
+{
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
 }
 
 @end

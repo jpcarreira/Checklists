@@ -16,4 +16,6 @@
 // determines if a cell is checked or not
 @property (nonatomic, assign) BOOL isChecked;
 
+-(void) toggleChecked;
+
 @end

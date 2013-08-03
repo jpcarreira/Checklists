@@ -12,4 +12,9 @@
 
 @synthesize text, isChecked;
 
+-(void) toggleChecked
+{
+    self.isChecked = !self.isChecked;
+}
+
 @end
