@@ -56,6 +56,7 @@ NSMutableArray *items;
     item.isChecked = YES;
     [items addObject:item];
     
+    /*
     item = [[ChecklistItem alloc] init];
     item.text = @"Soccer practice";
     item.isChecked = NO;
@@ -90,6 +91,7 @@ NSMutableArray *items;
     item.text = @"Finish this app";
     item.isChecked = NO;
     [items addObject:item];
+     */
 }
 
 
@@ -173,10 +175,42 @@ NSMutableArray *items;
     }
 }
 
+
+/**
+ * configures the text for a given cell
+ */
 -(void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *) item
 {
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
     label.text = item.text;
+}
+
+
+/**
+ * adds a new item to the checklist
+ */
+-(void)addItem
+{
+    // getting the current number of items
+    int newRowIndex = [items count];
+    
+    // creating a new item and adding it to the array
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.text = @"New row";
+    item.isChecked = YES;
+    [items addObject:item];
+    
+    /* we have to "tell" the table view about the new row in the data model so that it can add a new cell for that row 
+     as table views use index paths to identify rows, we need to make a new NSIndexPath object that points to the new row and 
+     below we make the newIndexPoint pointing to the new row, using the row number */
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    
+    /* as the method insertRowsAtIndexPaths uses not a single NSIndexPath object but, instead, an array of NSIndexPath, we have 
+     to create that array */
+    NSArray *indexPathArray = [NSArray arrayWithObject:newIndexPath];
+    
+    // adding the new row to the table view
+    [self.tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end
