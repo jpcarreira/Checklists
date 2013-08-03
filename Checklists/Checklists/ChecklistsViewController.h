@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ChecklistsViewController.h
 //  Checklists
 //
 //  Created by João Carreira on 8/3/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ChecklistsViewController : UITableViewController
 
 @end
