@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		622C13B317AEE0E300A61969 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C13B217AEE0E300A61969 /* AddItemViewController.m */; };
 		6271436117AD48490090A524 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436017AD48490090A524 /* UIKit.framework */; };
 		6271436317AD48490090A524 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436217AD48490090A524 /* Foundation.framework */; };
 		6271436517AD48490090A524 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436417AD48490090A524 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		622C13B117AEE0E300A61969 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
+		622C13B217AEE0E300A61969 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
 		6271435D17AD48490090A524 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6271436017AD48490090A524 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6271436217AD48490090A524 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,6 +97,8 @@
 				6271438417AD4B340090A524 /* ChecklistsViewController.m */,
 				6271438617AD79E70090A524 /* ChecklistItem.h */,
 				6271438717AD79E70090A524 /* ChecklistItem.m */,
+				622C13B117AEE0E300A61969 /* AddItemViewController.h */,
+				622C13B217AEE0E300A61969 /* AddItemViewController.m */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				6271437117AD48490090A524 /* AppDelegate.m in Sources */,
 				6271438517AD4B340090A524 /* ChecklistsViewController.m in Sources */,
 				6271438817AD79E70090A524 /* ChecklistItem.m in Sources */,
+				622C13B317AEE0E300A61969 /* AddItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +312,7 @@
 				6271438217AD48490090A524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
