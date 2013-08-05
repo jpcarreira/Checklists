@@ -14,6 +14,8 @@
 
 @implementation AddItemViewController
 
+@synthesize textField;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,6 +39,8 @@
 // pressing the "Done" button on the navigation bar
 -(IBAction)done
 {
+    NSLog(@"Contents of the text field: %@", textField.text);
+    
     // the preseting view controller is the UINavigationController
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -54,4 +58,15 @@
     return nil;
 }
 
+- (void)viewDidUnload {
+    [self setTextField:nil];
+    [super viewDidUnload];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    // automatically toggling the textfield (aka, giving the control focus)
+    [self.textField becomeFirstResponder];
+}
 @end
