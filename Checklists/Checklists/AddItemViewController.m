@@ -48,5 +48,10 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+// disabling selections in a row
+-(NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 @end
