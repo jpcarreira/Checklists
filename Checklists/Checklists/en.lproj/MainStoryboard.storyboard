@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="iqw-Zs-Iqf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="iqw-Zs-Iqf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Checklists View Controller - Checklists-->
@@ -71,7 +71,11 @@
                                                     <rect key="frame" x="20" y="7" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="IkL-4T-I0N" eventType="editingDidEndOnExit" id="3Up-BD-PmB"/>
+                                                        <outlet property="delegate" destination="IkL-4T-I0N" id="7ei-Zs-sLX"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -91,13 +95,14 @@
                                 <action selector="cancel" destination="IkL-4T-I0N" id="sng-VR-RJo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Tpg-IE-J9b">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="Tpg-IE-J9b">
                             <connections>
                                 <action selector="done" destination="IkL-4T-I0N" id="oTF-ae-t2l"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="Tpg-IE-J9b" id="wbz-mx-bbj"/>
                         <outlet property="textField" destination="nOa-G9-O27" id="3mX-RR-3qa"/>
                     </connections>
                 </tableViewController>
@@ -148,6 +153,7 @@
             <relationships>
                 <relationship kind="action" name="cancel"/>
                 <relationship kind="action" name="done"/>
+                <relationship kind="outlet" name="doneBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
             </relationships>
         </class>

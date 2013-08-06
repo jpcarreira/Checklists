@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddItemViewController : UITableViewController
+/* added UITextFieldDelegate to make the ViewController a delegate of the TextField: 
+ this allows the view controller to check whether there's text, 
+ or not, in the textfield */
+@interface AddItemViewController : UITableViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 
 -(IBAction)cancel;
 -(IBAction)done;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 
 @end

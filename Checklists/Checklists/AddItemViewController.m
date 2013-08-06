@@ -14,7 +14,7 @@
 
 @implementation AddItemViewController
 
-@synthesize textField;
+@synthesize textField, doneBarButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -60,6 +60,7 @@
 
 - (void)viewDidUnload {
     [self setTextField:nil];
+    [self setDoneBarButton:nil];
     [super viewDidUnload];
 }
 
@@ -69,4 +70,30 @@
     // automatically toggling the textfield (aka, giving the control focus)
     [self.textField becomeFirstResponder];
 }
+
+// verifies if text field is empty 
+-(BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    self.doneBarButton.enabled = ([newText length] > 0);
+    
+    // the if-else below is equivalent to above
+    /*
+    if([newText length] > 0)
+    {
+        self.doneBarButton.enabled = YES;
+    }
+    else
+    {
+        self.doneBarButton.enabled = NO;
+    }
+    */
+    
+    return YES;
+    /* the Done button is initially enabled when the Add Item screen opens, 
+     but there is no text in the text field at that point so it really should be disabled. 
+     This is simple enough to fix: in the Storyboard editor, select the Done bar button and go to the Attributes Inspector and uncheck the Enabled box. */
+}
+
 @end
