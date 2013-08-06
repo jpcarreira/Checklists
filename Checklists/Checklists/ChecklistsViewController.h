@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ChecklistItem.h"
+// import needed for the delegate
+#import "AddItemViewController.h"
 
-@interface ChecklistsViewController : UITableViewController
+@interface ChecklistsViewController : UITableViewController <AddItemViewControllerDelegate>
 
 -(IBAction)addItem;
 

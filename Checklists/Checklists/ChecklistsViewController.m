@@ -228,4 +228,28 @@ NSMutableArray *items;
     [tableView deleteRowsAtIndexPaths:newIndexPath withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+/* protocol (delegate) methods (now the responsability of the DONE
+ and CANCEL buttons are on the delegate */
+-(void) addItemViewControllerDidCancel:(AddItemViewController *)controller
+{
+    NSLog(@"ChecklistViewController: Cancel");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) addItemViewController:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
+{
+    NSLog(@"CheckListViewController: Done");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/* "telling" AddItemViewController*/
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"AddItem"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddItemViewController *controller = (AddItemViewController *) navigationController.topViewController;
+        controller.delegate = self;
+    }
+}
 @end

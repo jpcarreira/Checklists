@@ -7,6 +7,8 @@
 //
 
 #import "AddItemViewController.h"
+// added after adding the delegate
+#import "ChecklistItem.h"
 
 @interface AddItemViewController ()
 
@@ -14,7 +16,7 @@
 
 @implementation AddItemViewController
 
-@synthesize textField, doneBarButton;
+@synthesize textField, doneBarButton, delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,17 +41,33 @@
 // pressing the "Done" button on the navigation bar
 -(IBAction)done
 {
+    // before defining a AddItemViewController delegate
+    /*
     NSLog(@"Contents of the text field: %@", textField.text);
-    
     // the preseting view controller is the UINavigationController
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+     */
+    
+    // after adding the delegate
+    NSLog(@"AddItemViewController: Done");
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.text = self.textField.text;
+    item.isChecked = NO;
+    [self.delegate addItemViewController:self didFinishAddingItem:item];
 }
 
 // pressing the "Cancel" button on the navigation bar
 -(IBAction)cancel
 {
+    // before defining a AddItemViewController delegate
+    /*
     // the preseting view controller is the UINavigationController
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil]; 
+     */
+    
+    // after adding the delegate
+    NSLog(@"AddItemViewController: Cancel");
+    [self.delegate addItemViewControllerDidCancel:self];
 }
 
 // disabling selections in a row
