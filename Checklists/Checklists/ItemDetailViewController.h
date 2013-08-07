@@ -1,5 +1,5 @@
 //
-//  AddItemViewController.h
+//  ItemDetailViewController.h
 //  Checklists
 //
 //  Created by João Carreira on 8/4/13.
@@ -8,21 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-/* defining a custom delegate so that AddItemViewController can
+/* defining a custom delegate so that itemDetailViewController can
  communicate back to to CheckListItemViewController; the 
  delegate also needs the property shown after @interface */
-@class AddItemViewController;
+@class ItemDetailViewController;
 @class ChecklistItem;
-@protocol AddItemViewControllerDelegate <NSObject>
--(void)addItemViewControllerDidCancel:(AddItemViewController *) controller;
--(void)addItemViewController:(AddItemViewController *) controller didFinishAddingItem:(ChecklistItem *) item;
--(void)addItemViewController:(AddItemViewController *) controller didFinishEdititingItem:(ChecklistItem *) item;
+@protocol ItemDetailControllerDelegate <NSObject>
+-(void)itemDetailViewControllerDidCancel:(ItemDetailViewController *) controller;
+-(void)itemDetailViewController:(ItemDetailViewController *) controller didFinishAddingItem:(ChecklistItem *) item;
+-(void)itemDetailViewController:(ItemDetailViewController *) controller didFinishEdititingItem:(ChecklistItem *) item;
 @end
 
 /* added UITextFieldDelegate to make the ViewController a delegate of the TextField: 
  this allows the view controller to check whether there's text, 
  or not, in the textfield */
-@interface AddItemViewController : UITableViewController<UITextFieldDelegate>
+@interface ItemDetailViewController : UITableViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 
@@ -30,8 +30,8 @@
 
 @property (nonatomic, strong) ChecklistItem *itemToEdit;
 
-// delegate for AddItemViewController
-@property (nonatomic, weak) id <AddItemViewControllerDelegate> delegate;
+// delegate for itemDetailViewController
+@property (nonatomic, weak) id <ItemDetailControllerDelegate> delegate;
 
 -(IBAction)cancel;
 -(IBAction)done;

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ChecklistItem.h"
 // import needed for the delegate
-#import "AddItemViewController.h"
+#import "ItemDetailViewController.h"
 
-@interface ChecklistsViewController : UITableViewController <AddItemViewControllerDelegate>
+@interface ChecklistsViewController : UITableViewController <ItemDetailControllerDelegate>
 
 // no longer needed (fake add item method)
 //-(IBAction)addItem;

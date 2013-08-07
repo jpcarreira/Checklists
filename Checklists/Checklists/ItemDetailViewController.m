@@ -1,20 +1,20 @@
 //
-//  AddItemViewController.m
+//  ItemDetailViewController.m
 //  Checklists
 //
 //  Created by João Carreira on 8/4/13.
 //  Copyright (c) 2013 João Carreira. All rights reserved.
 //
 
-#import "AddItemViewController.h"
+#import "ItemDetailViewController.h"
 // added after adding the delegate
 #import "ChecklistItem.h"
 
-@interface AddItemViewController ()
+@interface ItemDetailViewController ()
 
 @end
 
-@implementation AddItemViewController
+@implementation ItemDetailViewController
 
 @synthesize textField, doneBarButton, delegate, itemToEdit;
 
@@ -48,7 +48,7 @@
 // pressing the "Done" button on the navigation bar
 -(IBAction)done
 {
-    // before defining a AddItemViewController delegate
+    // before defining a itemDetailViewController delegate
     /*
     NSLog(@"Contents of the text field: %@", textField.text);
     // the preseting view controller is the UINavigationController
@@ -61,12 +61,12 @@
         ChecklistItem *item = [[ChecklistItem alloc] init];
         item.text = self.textField.text;
         item.isChecked = NO;
-        [self.delegate addItemViewController:self didFinishAddingItem:item];
+        [self.delegate itemDetailViewController:self didFinishAddingItem:item];
     }
     else
     {
         self.itemToEdit.text = self.textField.text;
-        [self.delegate addItemViewController:self didFinishEdititingItem:itemToEdit];
+        [self.delegate itemDetailViewController:self didFinishEdititingItem:itemToEdit];
     }
     
 }
@@ -74,14 +74,14 @@
 // pressing the "Cancel" button on the navigation bar
 -(IBAction)cancel
 {
-    // before defining a AddItemViewController delegate
+    // before defining a itemDetailViewController delegate
     /*
     // the preseting view controller is the UINavigationController
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil]; 
      */
     
     // after adding the delegate
-    [self.delegate addItemViewControllerDidCancel:self];
+    [self.delegate itemDetailViewControllerDidCancel:self];
 }
 
 // disabling selections in a row

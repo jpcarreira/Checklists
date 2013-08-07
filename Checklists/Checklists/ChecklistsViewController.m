@@ -241,13 +241,13 @@ NSMutableArray *items;
 
 /* protocol (delegate) methods (now the responsability of the DONE
  and CANCEL buttons are on the delegate */
--(void) addItemViewControllerDidCancel:(AddItemViewController *)controller
+-(void) itemDetailViewControllerDidCancel:(ItemDetailViewController *)controller
 {
     // line below should work with self instead of controller??
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void) addItemViewController:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
+-(void) itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)item
 {
     // inserting a new item
     int newRowIndex = [items count];
@@ -260,7 +260,7 @@ NSMutableArray *items;
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void) addItemViewController:(AddItemViewController *)controller didFinishEdititingItem:(ChecklistItem *)item
+-(void) itemDetailViewController:(ItemDetailViewController *)controller didFinishEdititingItem:(ChecklistItem *)item
 {
     int index = [items indexOfObject:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -269,23 +269,23 @@ NSMutableArray *items;
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-/* "telling" AddItemViewController that ChecklistItemViewController is it's delegate */
+/* "telling" itemDetalViewController that ChecklistItemViewController is it's delegate */
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // making sure we're dealing with the correct segue
     if([segue.identifier isEqualToString:@"AddItem"])
     {
-        // the following controller is not AddItemViewController but instead the navigation that embeds it
+        // the following controller is not itemDetailViewController but instead the navigation that embeds it
         UINavigationController *navigationController = segue.destinationViewController;
-        // noew we're getting the AddItemViewController
-        AddItemViewController *controller = (AddItemViewController *) navigationController.topViewController;
-        // setting AddItemViewController delegate as CheckListItemController
+        // noew we're getting the itemDetailViewController
+        ItemDetailViewController *controller = (ItemDetailViewController *) navigationController.topViewController;
+        // setting itemDetailViewController delegate as CheckListItemController
         controller.delegate = self;
     }
     else if([segue.identifier isEqualToString:@"EditItem"])
     {
         UINavigationController *navigationController = segue.destinationViewController;
-        AddItemViewController *controller = (AddItemViewController *) navigationController.topViewController;
+        ItemDetailViewController *controller = (ItemDetailViewController *) navigationController.topViewController;
         controller.delegate = self;
         // sender contains the ChecklistItem to edit
         controller.itemToEdit = sender;
