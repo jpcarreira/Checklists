@@ -49,7 +49,6 @@
      */
     
     // after adding the delegate
-    NSLog(@"AddItemViewController: Done");
     ChecklistItem *item = [[ChecklistItem alloc] init];
     item.text = self.textField.text;
     item.isChecked = NO;
@@ -66,7 +65,6 @@
      */
     
     // after adding the delegate
-    NSLog(@"AddItemViewController: Cancel");
     [self.delegate addItemViewControllerDidCancel:self];
 }
 

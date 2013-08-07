@@ -232,14 +232,13 @@ NSMutableArray *items;
  and CANCEL buttons are on the delegate */
 -(void) addItemViewControllerDidCancel:(AddItemViewController *)controller
 {
-    NSLog(@"ChecklistViewController: Cancel");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // line below should work with self instead of controller??
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void) addItemViewController:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
 {
-    NSLog(@"CheckListViewController: Done");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 /* "telling" AddItemViewController*/

@@ -25,12 +25,12 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
+
 // delegate for AddItemViewController
 @property (nonatomic, weak) id <AddItemViewControllerDelegate> delegate;
 
 -(IBAction)cancel;
 -(IBAction)done;
-
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 
 @end
