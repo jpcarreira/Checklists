@@ -16,7 +16,7 @@
 
 @implementation AddItemViewController
 
-@synthesize textField, doneBarButton, delegate;
+@synthesize textField, doneBarButton, delegate, itemToEdit;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(self.itemToEdit != nil)
+    {
+        self.title = @"Edit item";
+        self.textField.text = self.itemToEdit.text;
+        self.doneBarButton.enabled = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,10 +56,19 @@
      */
     
     // after adding the delegate
-    ChecklistItem *item = [[ChecklistItem alloc] init];
-    item.text = self.textField.text;
-    item.isChecked = NO;
-    [self.delegate addItemViewController:self didFinishAddingItem:item];
+    if(self.itemToEdit == nil)
+    {
+        ChecklistItem *item = [[ChecklistItem alloc] init];
+        item.text = self.textField.text;
+        item.isChecked = NO;
+        [self.delegate addItemViewController:self didFinishAddingItem:item];
+    }
+    else
+    {
+        self.itemToEdit.text = self.textField.text;
+        [self.delegate addItemViewController:self didFinishEdititingItem:itemToEdit];
+    }
+    
 }
 
 // pressing the "Cancel" button on the navigation bar

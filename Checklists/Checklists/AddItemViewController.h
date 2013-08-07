@@ -16,6 +16,7 @@
 @protocol AddItemViewControllerDelegate <NSObject>
 -(void)addItemViewControllerDidCancel:(AddItemViewController *) controller;
 -(void)addItemViewController:(AddItemViewController *) controller didFinishAddingItem:(ChecklistItem *) item;
+-(void)addItemViewController:(AddItemViewController *) controller didFinishEdititingItem:(ChecklistItem *) item;
 @end
 
 /* added UITextFieldDelegate to make the ViewController a delegate of the TextField: 
@@ -26,6 +27,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
+
+@property (nonatomic, strong) ChecklistItem *itemToEdit;
 
 // delegate for AddItemViewController
 @property (nonatomic, weak) id <AddItemViewControllerDelegate> delegate;

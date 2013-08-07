@@ -51,6 +51,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="x2h-pc-1Tw" kind="modal" identifier="EditItem" id="S6l-Oq-u9N"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWT-tI-Ih4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -154,23 +157,12 @@
             <point key="canvasLocation" x="1153" y="22"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AddItemViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddItemViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="done"/>
-                <relationship kind="outlet" name="doneBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ChecklistsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChecklistsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="S6l-Oq-u9N"/>
+    </inferredMetricsTieBreakers>
 </document>

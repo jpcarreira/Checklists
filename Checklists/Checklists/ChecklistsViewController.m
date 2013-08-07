@@ -260,6 +260,15 @@ NSMutableArray *items;
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void) addItemViewController:(AddItemViewController *)controller didFinishEdititingItem:(ChecklistItem *)item
+{
+    int index = [items indexOfObject:item];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self configureTextForCell:cell withChecklistItem:item];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
 /* "telling" AddItemViewController that ChecklistItemViewController is it's delegate */
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -273,5 +282,19 @@ NSMutableArray *items;
         // setting AddItemViewController delegate as CheckListItemController
         controller.delegate = self;
     }
+    else if([segue.identifier isEqualToString:@"EditItem"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddItemViewController *controller = (AddItemViewController *) navigationController.topViewController;
+        controller.delegate = self;
+        // sender contains the ChecklistItem to edit
+        controller.itemToEdit = sender;
+    }
+}
+
+-(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    ChecklistItem *item = [items objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
 @end
