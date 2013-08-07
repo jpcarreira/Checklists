@@ -108,7 +108,6 @@ NSMutableArray *items;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
@@ -165,6 +164,17 @@ NSMutableArray *items;
  */
 - (void)configureCheckMarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
+    UILabel *label = (UILabel *)[cell viewWithTag:1001];
+    if(item.isChecked)
+    {
+        label.text = @"✓";
+    }
+    else
+    {
+        label.text = @"";
+    }
+    // previous implementation before adding the detail disclosure button
+    /*
     // setting the cell accessory type according to the local variable
     if(item.isChecked)
     {
@@ -174,6 +184,7 @@ NSMutableArray *items;
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    */
 }
 
 
