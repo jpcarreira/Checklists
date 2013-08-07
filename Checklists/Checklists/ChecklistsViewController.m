@@ -238,16 +238,28 @@ NSMutableArray *items;
 
 -(void) addItemViewController:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
 {
+    // inserting a new item
+    int newRowIndex = [items count];
+    [items addObject:item];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    // dismissing the screen
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-/* "telling" AddItemViewController*/
+/* "telling" AddItemViewController that ChecklistItemViewController is it's delegate */
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // making sure we're dealing with the correct segue
     if([segue.identifier isEqualToString:@"AddItem"])
     {
+        // the following controller is not AddItemViewController but instead the navigation that embeds it
         UINavigationController *navigationController = segue.destinationViewController;
+        // noew we're getting the AddItemViewController
         AddItemViewController *controller = (AddItemViewController *) navigationController.topViewController;
+        // setting AddItemViewController delegate as CheckListItemController
         controller.delegate = self;
     }
 }

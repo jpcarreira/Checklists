@@ -13,6 +13,7 @@
 
 @interface ChecklistsViewController : UITableViewController <AddItemViewControllerDelegate>
 
--(IBAction)addItem;
+// no longer needed (fake add item method)
+//-(IBAction)addItem;
 
 @end
