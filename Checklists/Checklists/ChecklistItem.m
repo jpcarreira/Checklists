@@ -12,6 +12,12 @@
 
 @synthesize text, isChecked;
 
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.text forKey:@"text"];
+    [aCoder encodeBool:self.isChecked forKey:@"isChecked"];
+}
+
 -(void) toggleChecked
 {
     self.isChecked = !self.isChecked;

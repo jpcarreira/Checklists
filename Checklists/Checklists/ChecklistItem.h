@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ChecklistItem : NSObject
+// NSCoding needed for serialization
+@interface ChecklistItem : NSObject <NSCoding>
 
 // description of checklist item
 @property (nonatomic, copy) NSString *text;

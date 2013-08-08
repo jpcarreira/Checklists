@@ -29,11 +29,44 @@ NSMutableArray *items;
     return self;
 }
 
+/**
+ * gets the full path of the documents directory in a iOS device
+ */
+-(NSString *) getDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
+/**
+ * returns the full path for the file used to persist data
+ */
+-(NSString *) dataFilePath
+{
+    return [[self getDocumentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
+}
+
+/**
+ * saves checklist items using serialization
+ */
+-(void) saveCheckListItems
+{
+    // data object that will be written in the pList file
+    NSMutableData *data = [[NSMutableData alloc] init];
+    /* a form of NSCoder that creates plist files, encodes the array and all the
+    ChecklistItems in it into some sort of binary data format that can be written to a file */
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:items forKey:@"ChecklistItems"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    //NSLog(@"%@", [self getDocumentsDirectory]);
+    
     // initializing the mutable array
     items = [[NSMutableArray alloc] initWithCapacity:20];
     
@@ -154,6 +187,9 @@ NSMutableArray *items;
     
     [self configureCheckMarkForCell:cell withChecklistItem:item];
     
+    // saving changed array with modified checkmarks
+    [self saveCheckListItems];
+    
     // deselects the tapped row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -234,6 +270,9 @@ NSMutableArray *items;
     // removing the object from the data model
     [items removeObjectAtIndex:indexPath.row];
     
+    // saving changed array that no longer counts with deleted object
+    [self saveCheckListItems];
+    
     // removing the corresponing row
     NSArray *newIndexPath = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:newIndexPath withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -256,6 +295,9 @@ NSMutableArray *items;
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    // saving changed array with new added object
+    [self saveCheckListItems];
+    
     // dismissing the screen
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
@@ -266,6 +308,10 @@ NSMutableArray *items;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self configureTextForCell:cell withChecklistItem:item];
+    
+    // saving changed array with new edited object
+    [self saveCheckListItems];
+    
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
