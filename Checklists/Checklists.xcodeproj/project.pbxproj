@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		622C13B317AEE0E300A61969 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C13B217AEE0E300A61969 /* ItemDetailViewController.m */; };
+		62529C8317B595C1001D80C0 /* AllListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62529C8217B595C1001D80C0 /* AllListsViewController.m */; };
 		6271436117AD48490090A524 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436017AD48490090A524 /* UIKit.framework */; };
 		6271436317AD48490090A524 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436217AD48490090A524 /* Foundation.framework */; };
 		6271436517AD48490090A524 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6271436417AD48490090A524 /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		622C13B117AEE0E300A61969 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		622C13B217AEE0E300A61969 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		62529C8117B595C1001D80C0 /* AllListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllListsViewController.h; sourceTree = "<group>"; };
+		62529C8217B595C1001D80C0 /* AllListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllListsViewController.m; sourceTree = "<group>"; };
 		6271435D17AD48490090A524 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6271436017AD48490090A524 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6271436217AD48490090A524 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,6 +102,8 @@
 				6271438717AD79E70090A524 /* ChecklistItem.m */,
 				622C13B117AEE0E300A61969 /* ItemDetailViewController.h */,
 				622C13B217AEE0E300A61969 /* ItemDetailViewController.m */,
+				62529C8117B595C1001D80C0 /* AllListsViewController.h */,
+				62529C8217B595C1001D80C0 /* AllListsViewController.m */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				6271438517AD4B340090A524 /* ChecklistViewController.m in Sources */,
 				6271438817AD79E70090A524 /* ChecklistItem.m in Sources */,
 				622C13B317AEE0E300A61969 /* ItemDetailViewController.m in Sources */,
+				62529C8317B595C1001D80C0 /* AllListsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
