@@ -12,6 +12,16 @@
 
 @synthesize text, isChecked;
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super init]))
+    {
+        self.text = [aDecoder decodeObjectForKey:@"Text"];
+        self.isChecked = [aDecoder decodeBoolForKey:@"isChecked"];
+    }
+    return self;
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.text forKey:@"text"];

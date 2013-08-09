@@ -29,6 +29,39 @@ NSMutableArray *items;
     return self;
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        [self loadChecklistItems];
+    }
+    return self;
+}
+
+
+/**
+ * loading data from the pList file
+ */
+-(void) loadChecklistItems
+{
+    NSString *path = [self dataFilePath];
+    
+    // verifies if pList file already exists
+    if([[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        // loading contents of pList to NSData object
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // populates the mutable array with that pList data
+        items = [unarchiver decodeObjectForKey:@"ChecklistItem"];
+        [unarchiver finishDecoding];
+    }
+    else
+    {
+        items = [[NSMutableArray alloc] initWithCapacity:20];
+    }
+}
+
 /**
  * gets the full path of the documents directory in a iOS device
  */
@@ -64,9 +97,13 @@ NSMutableArray *items;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    //NSLog(@"%@", [self getDocumentsDirectory]);
     
+    NSLog(@"%@", [self getDocumentsDirectory]);
+
+    // below we have code to add "fake" items (used before save/load data was implemented)
+    
+    
+    /*
     // initializing the mutable array
     items = [[NSMutableArray alloc] initWithCapacity:20];
     
@@ -89,7 +126,7 @@ NSMutableArray *items;
     item.isChecked = YES;
     [items addObject:item];
     
-    
+    /*
     item = [[ChecklistItem alloc] init];
     item.text = @"Soccer practice";
     item.isChecked = NO;
@@ -100,7 +137,7 @@ NSMutableArray *items;
     item.isChecked = NO;
     [items addObject:item];
     
-    /*
+    
     item = [[ChecklistItem alloc] init];
     item.text = @"Call dad";
     item.isChecked = YES;
@@ -149,6 +186,10 @@ NSMutableArray *items;
 // tells the table view the number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([items count] == 0)
+    {
+        return 1;
+    }
     return [items count];
 }
 
