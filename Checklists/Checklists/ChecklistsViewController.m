@@ -53,7 +53,7 @@ NSMutableArray *items;
         NSData *data = [[NSData alloc] initWithContentsOfFile:path];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         // populates the mutable array with that pList data
-        items = [unarchiver decodeObjectForKey:@"ChecklistItem"];
+        items = [unarchiver decodeObjectForKey:@"ChecklistItems"];
         [unarchiver finishDecoding];
     }
     else
@@ -98,7 +98,7 @@ NSMutableArray *items;
 {
     [super viewDidLoad];
     
-    NSLog(@"%@", [self getDocumentsDirectory]);
+    //NSLog(@"%@", [self getDocumentsDirectory]);
 
     // below we have code to add "fake" items (used before save/load data was implemented)
     
@@ -126,7 +126,7 @@ NSMutableArray *items;
     item.isChecked = YES;
     [items addObject:item];
     
-    /*
+    
     item = [[ChecklistItem alloc] init];
     item.text = @"Soccer practice";
     item.isChecked = NO;
@@ -186,10 +186,6 @@ NSMutableArray *items;
 // tells the table view the number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if([items count] == 0)
-    {
-        return 1;
-    }
     return [items count];
 }
 

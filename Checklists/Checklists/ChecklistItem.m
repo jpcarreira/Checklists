@@ -16,7 +16,7 @@
 {
     if((self = [super init]))
     {
-        self.text = [aDecoder decodeObjectForKey:@"Text"];
+        self.text = [aDecoder decodeObjectForKey:@"text"];
         self.isChecked = [aDecoder decodeBoolForKey:@"isChecked"];
     }
     return self;
