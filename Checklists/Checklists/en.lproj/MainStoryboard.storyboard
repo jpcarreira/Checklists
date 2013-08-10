@@ -30,7 +30,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59Z-xs-Vyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="22"/>
+            <point key="canvasLocation" x="-34" y="22"/>
         </scene>
         <!--Checklist View Controller - Checklists Name-->
         <scene sceneID="LoM-o7-tmZ">
@@ -90,7 +90,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9Bj-wA-JrI">
             <objects>
-                <navigationController definesPresentationContext="YES" id="LsW-qJ-j89" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ListNavigationViewController" definesPresentationContext="YES" id="LsW-qJ-j89" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sGF-c7-BTM">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -120,7 +120,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="nOa-G9-O27">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name of the item" minimumFontSize="17" id="nOa-G9-O27">
                                                     <rect key="frame" x="20" y="7" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -179,7 +179,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIJ-Cb-2gi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-283" y="22"/>
+            <point key="canvasLocation" x="-519" y="22"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bO3-p0-a7j">

@@ -163,4 +163,22 @@ NSMutableArray *lists;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ * delegate method that detects when user taps the accessory button
+ * (instead of using the segue as we do on ChecklistViewController)
+ */
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    // creating the navigation controller; the identifier must be coherent with the ID in the "identity inspector" of the navigation controller, in the storyboard
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListNavigationViewController"];
+    ListDetailViewController *controller = (ListDetailViewController *)navigationController.topViewController;
+    controller.delegate = self;
+    
+    Checklist *checklist = [lists objectAtIndex:indexPath.row];
+    controller.checklistToEdit = checklist;
+    
+    // preseting the navigation controller in the screen
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
 @end
