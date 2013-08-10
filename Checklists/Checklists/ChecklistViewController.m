@@ -16,7 +16,8 @@
 
 @synthesize checklist;
 
-NSMutableArray *items;
+// deprecated with new data model
+//NSMutableArray *items;
 
 // before using an array
 // ChecklistItem *row0Item, *row1Item, *row2Item, *row3Item, *row4Item;
@@ -31,6 +32,8 @@ NSMutableArray *items;
     return self;
 }
 
+// deprecated with new data model
+/*
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     if((self = [super initWithCoder:aDecoder]))
@@ -39,11 +42,13 @@ NSMutableArray *items;
     }
     return self;
 }
-
+*/
 
 /**
  * loading data from the pList file
  */
+// deprecated with new data model
+/*
 -(void) loadChecklistItems
 {
     NSString *path = [self dataFilePath];
@@ -63,38 +68,47 @@ NSMutableArray *items;
         items = [[NSMutableArray alloc] initWithCapacity:20];
     }
 }
+*/
 
 /**
  * gets the full path of the documents directory in a iOS device
  */
+// deprecated with new data model
+/*
 -(NSString *) getDocumentsDirectory
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [paths objectAtIndex:0];
 }
+*/
 
 /**
  * returns the full path for the file used to persist data
  */
+// deprecated with new data model
+/*
 -(NSString *) dataFilePath
 {
     return [[self getDocumentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
 }
+*/
 
 /**
  * saves checklist items using serialization
  */
+// deprecated with new data model
+/*
 -(void) saveCheckListItems
 {
     // data object that will be written in the pList file
     NSMutableData *data = [[NSMutableData alloc] init];
-    /* a form of NSCoder that creates plist files, encodes the array and all the
-    ChecklistItems in it into some sort of binary data format that can be written to a file */
+    // a form of NSCoder that creates plist files, encodes the array and all the ChecklistItems in it into some sort of binary data format that can be written to a file 
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver encodeObject:items forKey:@"ChecklistItems"];
     [archiver finishEncoding];
     [data writeToFile:[self dataFilePath] atomically:YES];
 }
+*/
 
 - (void)viewDidLoad
 {
@@ -191,7 +205,7 @@ NSMutableArray *items;
 // tells the table view the number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [items count];
+    return [self.checklist.items count];
 }
 
 
@@ -201,7 +215,7 @@ NSMutableArray *items;
     // gets a copy of the prototype cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     
-    ChecklistItem *item = [items objectAtIndex:indexPath.row];
+    ChecklistItem *item = [self.checklist.items objectAtIndex:indexPath.row];
     
     // setting the cell's text
     [self configureTextForCell:cell withChecklistItem:item];
@@ -222,7 +236,7 @@ NSMutableArray *items;
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    ChecklistItem *item = [items objectAtIndex:indexPath.row];
+    ChecklistItem *item = [self.checklist.items objectAtIndex:indexPath.row];
     
     // changes the checkmark
     [item toggleChecked];
@@ -230,7 +244,8 @@ NSMutableArray *items;
     [self configureCheckMarkForCell:cell withChecklistItem:item];
     
     // saving changed array with modified checkmarks
-    [self saveCheckListItems];
+    // deprecated with new data model
+    //[self saveCheckListItems];
     
     // deselects the tapped row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -282,13 +297,13 @@ NSMutableArray *items;
 -(void)addItem
 {
     // getting the current number of items
-    int newRowIndex = [items count];
+    int newRowIndex = [self.checklist.items count];
     
     // creating a new item and adding it to the array
     ChecklistItem *item = [[ChecklistItem alloc] init];
     item.text = @"New row";
     item.isChecked = YES;
-    [items addObject:item];
+    [self.checklist.items addObject:item];
     
     /* we have to "tell" the table view about the new row in the data model so that it can add a new cell for that row 
      as table views use index paths to identify rows, we need to make a new NSIndexPath object that points to the new row and 
@@ -310,10 +325,11 @@ NSMutableArray *items;
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // removing the object from the data model
-    [items removeObjectAtIndex:indexPath.row];
+    [self.checklist.items removeObjectAtIndex:indexPath.row];
     
     // saving changed array that no longer counts with deleted object
-    [self saveCheckListItems];
+    // deprecated with new data model
+    //[self saveCheckListItems];
     
     // removing the corresponing row
     NSArray *newIndexPath = [NSArray arrayWithObject:indexPath];
@@ -331,14 +347,15 @@ NSMutableArray *items;
 -(void) itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)item
 {
     // inserting a new item
-    int newRowIndex = [items count];
-    [items addObject:item];
+    int newRowIndex = [self.checklist.items count];
+    [self.checklist.items addObject:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
     // saving changed array with new added object
-    [self saveCheckListItems];
+    // deprecated with new data model
+    //[self saveCheckListItems];
     
     // dismissing the screen
     [controller dismissViewControllerAnimated:YES completion:nil];
@@ -346,13 +363,14 @@ NSMutableArray *items;
 
 -(void) itemDetailViewController:(ItemDetailViewController *)controller didFinishEdititingItem:(ChecklistItem *)item
 {
-    int index = [items indexOfObject:item];
+    int index = [self.checklist.items indexOfObject:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self configureTextForCell:cell withChecklistItem:item];
     
     // saving changed array with new edited object
-    [self saveCheckListItems];
+    // deprecated with new data model
+    //[self saveCheckListItems];
     
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
@@ -382,7 +400,7 @@ NSMutableArray *items;
 
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    ChecklistItem *item = [items objectAtIndex:indexPath.row];
+    ChecklistItem *item = [self.checklist.items objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
 @end

@@ -10,6 +10,7 @@
 #import "Checklist.h"
 #import "ChecklistViewController.h"
 #import "ListDetailViewController.h"
+#import "ChecklistItem.h"
 
 @interface AllListsViewController ()
 
@@ -58,6 +59,14 @@ NSMutableArray *lists;
         list = [[Checklist alloc] init];
         list.name = @"To do";
         [lists addObject:list];
+        
+        // adding "fake" data
+        for(Checklist *list in lists)
+        {
+            ChecklistItem *item = [[ChecklistItem alloc] init];
+            item.text = [NSString stringWithFormat:@"Item for %@", list.name];
+            [list.items addObject:item];
+        }
     }
     return self;
 }

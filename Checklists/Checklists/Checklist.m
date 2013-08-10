@@ -10,6 +10,15 @@
 
 @implementation Checklist
 
-@synthesize name;
+@synthesize name, items;
+
+-(id)init
+{
+    if((self = [super init]))
+    {
+        self.items = [[NSMutableArray alloc] initWithCapacity:20];
+    }
+    return self;
+}
 
 @end
