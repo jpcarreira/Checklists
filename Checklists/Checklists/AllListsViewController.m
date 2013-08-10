@@ -9,6 +9,7 @@
 #import "AllListsViewController.h"
 #import "Checklist.h"
 #import "ChecklistViewController.h"
+#import "ListDetailViewController.h"
 
 @interface AllListsViewController ()
 
@@ -96,6 +97,13 @@ NSMutableArray *lists;
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [lists removeObjectAtIndex:indexPath.row];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 
 #pragma mark - Table view delegate
 /**
@@ -118,7 +126,41 @@ NSMutableArray *lists;
         ChecklistViewController *controller = segue.destinationViewController;
         controller.checklist = sender;
     }
+    else if([segue.identifier isEqualToString:@"AddChecklist"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        ListDetailViewController *controller = (ListDetailViewController *)navigationController.topViewController;
+        controller.delegate = self;
+        controller.checklistToEdit = nil;
+    }
 }
 
+-(void)listDetailViewControllerDidCancel:(ListDetailViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)listDetailViewController:(ListDetailViewController *)controller didFinishAddingChecklist:(Checklist *)checklist
+{
+    int newRowIndex = [lists count];
+    [lists addObject:checklist];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)listDetailViewController:(ListDetailViewController *)controller didFinishEdititingChecklist:(Checklist *)checklist
+{
+    int index = [lists indexOfObject:checklist];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.text = checklist.name;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

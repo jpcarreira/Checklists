@@ -22,6 +22,7 @@
 		6271437A17AD48490090A524 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6271437817AD48490090A524 /* MainStoryboard.storyboard */; };
 		6271438517AD4B340090A524 /* ChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6271438417AD4B340090A524 /* ChecklistViewController.m */; };
 		6271438817AD79E70090A524 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6271438717AD79E70090A524 /* ChecklistItem.m */; };
+		62B0ECBB17B676B40061469D /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0ECBA17B676B40061469D /* ListDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		6271438417AD4B340090A524 /* ChecklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecklistViewController.m; sourceTree = "<group>"; };
 		6271438617AD79E70090A524 /* ChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChecklistItem.h; sourceTree = "<group>"; };
 		6271438717AD79E70090A524 /* ChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
+		62B0ECB917B676B40061469D /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
+		62B0ECBA17B676B40061469D /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				622C13B217AEE0E300A61969 /* ItemDetailViewController.m */,
 				6271437817AD48490090A524 /* MainStoryboard.storyboard */,
 				6271436717AD48490090A524 /* Supporting Files */,
+				62B0ECB917B676B40061469D /* ListDetailViewController.h */,
+				62B0ECBA17B676B40061469D /* ListDetailViewController.m */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				622C13B317AEE0E300A61969 /* ItemDetailViewController.m in Sources */,
 				62529C8317B595C1001D80C0 /* AllListsViewController.m in Sources */,
 				62529C8617B59AE5001D80C0 /* Checklist.m in Sources */,
+				62B0ECBB17B676B40061469D /* ListDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

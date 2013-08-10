@@ -103,8 +103,6 @@ NSMutableArray *items;
     // showing the correct tile for the checklist
     self.title = self.checklist.name;
     
-    NSLog(@"%@", self.checklist.name);
-    
     //NSLog(@"%@", [self getDocumentsDirectory]);
 
     // below we have code to add "fake" items (used before save/load data was implemented)
