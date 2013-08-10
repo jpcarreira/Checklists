@@ -95,20 +95,20 @@
 		6271436617AD48490090A524 /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
-				6271436F17AD48490090A524 /* AppDelegate.h */,
-				6271437017AD48490090A524 /* AppDelegate.m */,
-				6271437817AD48490090A524 /* MainStoryboard.storyboard */,
-				6271436717AD48490090A524 /* Supporting Files */,
-				6271438317AD4B340090A524 /* ChecklistViewController.h */,
-				6271438417AD4B340090A524 /* ChecklistViewController.m */,
-				6271438617AD79E70090A524 /* ChecklistItem.h */,
-				6271438717AD79E70090A524 /* ChecklistItem.m */,
-				622C13B117AEE0E300A61969 /* ItemDetailViewController.h */,
-				622C13B217AEE0E300A61969 /* ItemDetailViewController.m */,
 				62529C8117B595C1001D80C0 /* AllListsViewController.h */,
 				62529C8217B595C1001D80C0 /* AllListsViewController.m */,
+				6271436F17AD48490090A524 /* AppDelegate.h */,
+				6271437017AD48490090A524 /* AppDelegate.m */,
 				62529C8417B59AE5001D80C0 /* Checklist.h */,
 				62529C8517B59AE5001D80C0 /* Checklist.m */,
+				6271438617AD79E70090A524 /* ChecklistItem.h */,
+				6271438717AD79E70090A524 /* ChecklistItem.m */,
+				6271438317AD4B340090A524 /* ChecklistViewController.h */,
+				6271438417AD4B340090A524 /* ChecklistViewController.m */,
+				622C13B117AEE0E300A61969 /* ItemDetailViewController.h */,
+				622C13B217AEE0E300A61969 /* ItemDetailViewController.m */,
+				6271437817AD48490090A524 /* MainStoryboard.storyboard */,
+				6271436717AD48490090A524 /* Supporting Files */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";

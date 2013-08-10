@@ -8,6 +8,7 @@
 
 #import "AllListsViewController.h"
 #import "Checklist.h"
+#import "ChecklistViewController.h"
 
 @interface AllListsViewController ()
 
@@ -50,7 +51,7 @@ NSMutableArray *lists;
         [lists addObject:list];
         
         list = [[Checklist alloc] init];
-        list.name = @"Cool aps";
+        list.name = @"Cool apps";
         [lists addObject:list];
         
         list = [[Checklist alloc] init];
@@ -105,7 +106,19 @@ NSMutableArray *lists;
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"ShowChecklist" sender:nil];
+    Checklist *checklist = [lists objectAtIndex:indexPath.row];
+    // sending the Checklist object corresponding to the row the user taps on
+    [self performSegueWithIdentifier:@"ShowChecklist" sender:checklist];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ShowChecklist"])
+    {
+        ChecklistViewController *controller = segue.destinationViewController;
+        controller.checklist = sender;
+    }
+}
+
 
 @end

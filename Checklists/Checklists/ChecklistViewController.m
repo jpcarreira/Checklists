@@ -14,6 +14,8 @@
 
 @implementation ChecklistViewController
 
+@synthesize checklist;
+
 NSMutableArray *items;
 
 // before using an array
@@ -97,6 +99,11 @@ NSMutableArray *items;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // showing the correct tile for the checklist
+    self.title = self.checklist.name;
+    
+    NSLog(@"%@", self.checklist.name);
     
     //NSLog(@"%@", [self getDocumentsDirectory]);
 
