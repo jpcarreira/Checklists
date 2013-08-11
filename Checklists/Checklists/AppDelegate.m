@@ -50,7 +50,7 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AllListsViewController *controller = (AllListsViewController *)[navigationController.viewControllers objectAtIndex:0];
     // we can only access to this method once saveChecklist is added to the the AllListsViewController.h
-    [controller saveChecklists];
+    [controller.dataModel saveChecklists];
 }
 
 @end
