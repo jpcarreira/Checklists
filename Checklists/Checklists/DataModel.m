@@ -86,4 +86,16 @@
     }
 }
 
+#pragma mark - NSUserDefaults
+
+-(int)getIndexOfSelectedChecklist
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"ChecklistIndex"];
+}
+
+-(void)setIndexOfSelectedChecklist:(int)index
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"ChecklistIndex"];
+}
+
 @end

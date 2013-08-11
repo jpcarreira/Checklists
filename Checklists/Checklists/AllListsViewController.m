@@ -59,7 +59,7 @@
     // making this AllListsViewController as the delegate
     self.navigationController.delegate = self;
     // getting the value stored in the NSUserDefaults
-    int index = [[NSUserDefaults standardUserDefaults]integerForKey:@"ChecklistIndex"];
+    int index = [self.dataModel getIndexOfSelectedChecklist];
     /* going the user's last viewed checklist (if the value is not
      -1 then it means the user was viewing some checklist at the 
      point the app was exited) */
@@ -119,7 +119,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // saving the tapped row in NSUserDefaults
-    [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:@"ChecklistIndex"];
+    [self.dataModel setIndexOfSelectedChecklist:indexPath.row];
     
     Checklist *checklist = [self.dataModel.lists objectAtIndex:indexPath.row];
     // sending the Checklist object corresponding to the row the user taps on
@@ -198,7 +198,7 @@
      in NSUserDefaults to -1 */
     if(viewController == self)
     {
-        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:@"ChecklistIndex"];
+        [self.dataModel setIndexOfSelectedChecklist:-1];
     }
 }
 
