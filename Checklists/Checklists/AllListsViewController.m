@@ -52,6 +52,25 @@
     [super viewDidLoad];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // making this AllListsViewController as the delegate
+    self.navigationController.delegate = self;
+    // getting the value stored in the NSUserDefaults
+    int index = [[NSUserDefaults standardUserDefaults]integerForKey:@"ChecklistIndex"];
+    /* going the user's last viewed checklist (if the value is not
+     -1 then it means the user was viewing some checklist at the 
+     point the app was exited) */
+    if(index != -1)
+    {
+        Checklist *checklist = [self.dataModel.lists objectAtIndex:index];
+        [self performSegueWithIdentifier:@"ShowChecklist" sender:checklist];
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -99,6 +118,9 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // saving the tapped row in NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:@"ChecklistIndex"];
+    
     Checklist *checklist = [self.dataModel.lists objectAtIndex:indexPath.row];
     // sending the Checklist object corresponding to the row the user taps on
     [self performSegueWithIdentifier:@"ShowChecklist" sender:checklist];
@@ -164,6 +186,20 @@
     
     // preseting the navigation controller in the screen
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+/**
+ * delegate method to check if user taps the back button
+ */
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    /* if the back button is pressed then the viewcontroller will 
+     be the AllListViewController itself so we can set ChecklistIndex
+     in NSUserDefaults to -1 */
+    if(viewController == self)
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:@"ChecklistIndex"];
+    }
 }
 
 @end

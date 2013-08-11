@@ -12,11 +12,25 @@
 
 @synthesize lists;
 
+/**
+ * method that changes NSUserDefaults "default value" to -1
+ * to avoid a crash when the app starts
+ */
+-(void)registerDefaults
+{
+    // setting the standard
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"ChecklistIndex", nil];
+    
+    // giving the standard to NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+}
+
 -(id)init
 {
     if((self = [super init]))
     {
         [self loadChecklists];
+        [self registerDefaults];
     }
     return self;
 }
