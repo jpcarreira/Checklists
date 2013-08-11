@@ -63,7 +63,11 @@
     /* going the user's last viewed checklist (if the value is not
      -1 then it means the user was viewing some checklist at the 
      point the app was exited) */
-    if(index != -1)
+    /* checking if both Checklists.plist and NSUserDefaults are 
+     "in sync", that is, the above condition prevents a crash 
+     when, for example, NSUserDefaults gets sucessfully updated 
+     but the Checklist object wasn't added to the plist */
+    if(index >= 0 && index < [self.dataModel.lists count])
     {
         Checklist *checklist = [self.dataModel.lists objectAtIndex:index];
         [self performSegueWithIdentifier:@"ShowChecklist" sender:checklist];
