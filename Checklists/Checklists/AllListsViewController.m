@@ -75,6 +75,14 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // calling the built-in reloadData method that reloads the entire contents of the tableView (necessary for cells subtitles to be refreshed with still-to-do items
+    // alternative would be to create a new delegate protocol so that AllListView controler would change the subtitles text whenever there occured a change in done/undone items
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -101,7 +109,22 @@
     Checklist *checklist = [self.dataModel.lists objectAtIndex:indexPath.row];
     cell.textLabel.text = checklist.name;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Remaining: %d", [checklist countUncheckedItems]];
+    
+    int countUndone = [checklist countUncheckedItems];
+    
+    if([checklist.items count] == 0)
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"No items!"];
+    }
+    
+    else if(countUndone == 0)
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"All done!"];
+    }
+    else
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Remaining items: %d", countUndone];
+    }
     
     return cell;
 }
