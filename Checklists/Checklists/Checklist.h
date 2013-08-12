@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) NSMutableArray *items;
 
+// checklist icon name
+@property (nonatomic, copy) NSString *iconName;
+
 -(int)countUncheckedItems;
 
 @end

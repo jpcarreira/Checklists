@@ -17,7 +17,6 @@
  if you want to hold onto an array and don’t want people to be able to change its contents after they set it. 
  This sends a copy message to the value passed in, then keeps that. */
 
-
 // determines if a cell is checked or not
 @property (nonatomic, assign) BOOL isChecked;
 /* ASSIGN: When you’re dealing with basic types, like ints, floats, etc. The compiler just creates a setter with 

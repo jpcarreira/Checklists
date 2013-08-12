@@ -109,6 +109,8 @@
     Checklist *checklist = [self.dataModel.lists objectAtIndex:indexPath.row];
     cell.textLabel.text = checklist.name;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    // as the UITableViewCellStyleSubtitle comes with a built-in UIImageView we'll use this to load the icon
+    cell.imageView.image = [UIImage imageNamed:checklist.iconName];
     
     int countUndone = [checklist countUncheckedItems];
     
