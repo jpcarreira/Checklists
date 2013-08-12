@@ -112,6 +112,15 @@
     }
 }
 
+/**
+ * sorts checklists by name, ascending order
+ */
+-(void)sortChecklists
+{
+    // we need to add compare to compare to Checklist
+    [self.lists sortUsingSelector:@selector(compare:)];
+}
+
 #pragma mark - NSUserDefaults
 
 -(int)getIndexOfSelectedChecklist

@@ -55,4 +55,14 @@
     [aCoder encodeObject:self.items forKey:@"Items"];
 }
 
+/**
+ * comparison method (needed for sort in DataModel) based
+ * on checklist's name
+ */
+-(NSComparisonResult)compare:(Checklist *)otherChecklist
+{
+    // the invoked method is not case sensitive
+    return [self.name localizedStandardCompare:otherChecklist.name];
+}
+
 @end
