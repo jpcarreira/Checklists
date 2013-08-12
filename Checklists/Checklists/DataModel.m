@@ -7,6 +7,7 @@
 //
 
 #import "DataModel.h"
+#import "Checklist.h"
 
 @implementation DataModel
 
@@ -18,12 +19,36 @@
  */
 -(void)registerDefaults
 {
-    // setting the standard
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"ChecklistIndex", nil];
+    // setting the standard adding a new default for app's first time boot
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"ChecklistIndex", [NSNumber numberWithBool:YES], @"FirstTime", nil];
     
     // giving the standard to NSUserDefaults
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
 }
+
+/**
+ * method that handles first time boot of the app, that is,
+ * creates a new list called "List" that allows the user to
+ * immediatly add items
+ */
+-(void)handleFirstTime
+{
+    BOOL firstTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstTime"];
+    if(firstTime)
+    {
+        // creating a new checklist item named "List" and adding it to the mutable array
+        Checklist *checklist = [[Checklist alloc] init];
+        [checklist setName:@"List"];
+        [self.lists addObject:checklist];
+        
+        // making sure that the app launches at the created list screen
+        [self setIndexOfSelectedChecklist:0];
+        
+        // turning "off" firsttime in NSUserDefaults
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"FirstTime"];
+    }
+}
+
 
 -(id)init
 {
@@ -31,6 +56,7 @@
     {
         [self loadChecklists];
         [self registerDefaults];
+        [self handleFirstTime];
     }
     return self;
 }
