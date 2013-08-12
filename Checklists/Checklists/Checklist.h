@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray *items;
 
+-(int)countUncheckedItems;
+
 @end

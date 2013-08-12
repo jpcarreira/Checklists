@@ -7,6 +7,7 @@
 //
 
 #import "Checklist.h"
+#import "ChecklistItem.h"
 
 @implementation Checklist
 
@@ -21,6 +22,23 @@
     return self;
 }
 
+/**
+ * counts the total of unchecked items in a checklist
+ */
+-(int)countUncheckedItems
+{
+    int count = 0;
+    for(ChecklistItem *item in self.items)
+    {
+        if(!item.isChecked)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+#pragma mark - NSCoder
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     if((self = [super init]))

@@ -94,13 +94,14 @@
     
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
     // loading the list in the array into the cells
     Checklist *checklist = [self.dataModel.lists objectAtIndex:indexPath.row];
     cell.textLabel.text = checklist.name;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Remaining: %d", [checklist countUncheckedItems]];
     
     return cell;
 }
