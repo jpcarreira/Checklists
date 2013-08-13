@@ -72,7 +72,15 @@
 
 -(NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    // this will allow to tap the row corresponding to icon select (tapping the first row is still not enabled though)
+    if(indexPath.row == 1)
+    {
+        return indexPath;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 
@@ -90,4 +98,8 @@
     
 }
 
+- (void)viewDidUnload {
+    [self setIconImageView:nil];
+    [super viewDidUnload];
+}
 @end

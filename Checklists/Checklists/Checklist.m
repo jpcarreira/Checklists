@@ -18,8 +18,8 @@
     if((self = [super init]))
     {
         self.items = [[NSMutableArray alloc] initWithCapacity:20];
-        // for the sake of testing we're giving all checklists the appointments icon
-        self.iconName = @"Appointments";
+        // loading a fully transparent image, by default
+        self.iconName = @"No Icon";
     }
     return self;
 }

@@ -27,6 +27,9 @@
 
 @property (nonatomic, weak) id <ListDetailViewControllerDelegate> delegate;
 
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+
+
 -(IBAction)cancel;
 -(IBAction)done;
 
