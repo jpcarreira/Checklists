@@ -12,10 +12,23 @@
 
 @implementation AppDelegate
 
+/**
+ * this method is called when the app starts
+ */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    return YES;
+    // date corresponding to 5 seconds in the future
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5];
+    // creating a local notification object
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = date;
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.alertBody = @"Local notification test";
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -42,6 +55,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self saveData];
+}
+
+/**
+ * this method is called when the local notification is called and the app is still running or suspended
+ */
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSLog(@"didReceiveLocalNotification: %@", notification);
 }
 
 #pragma mark - save methods
