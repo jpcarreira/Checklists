@@ -17,11 +17,14 @@
 
 @synthesize textField, doneBarButton, delegate, checklistToEdit;
 
-- (id)initWithStyle:(UITableViewStyle)style
+NSString *iconName;
+
+-(id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        // setting the default icon as the folder icon
+        iconName = @"Folder";
     }
     return self;
 }
@@ -34,7 +37,9 @@
         self.title = @"Edit Checklist";
         self.textField.text = self.checklistToEdit.name;
         self.doneBarButton.enabled = YES;
+        iconName = self.checklistToEdit.iconName;
     }
+    self.iconImageView.image = [UIImage imageNamed:iconName];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -61,11 +66,13 @@
     {
         Checklist *checklist = [[Checklist alloc] init];
         checklist.name = self.textField.text;
+        checklist.iconName = iconName;
         [self.delegate listDetailViewController:self didFinishAddingChecklist:checklist];
     }
     else
     {
         self.checklistToEdit.name = self.textField.text;
+        self.checklistToEdit.iconName = iconName;
         [self.delegate listDetailViewController:self didFinishEdititingChecklist:checklistToEdit];
     }
 }
@@ -102,4 +109,26 @@
     [self setIconImageView:nil];
     [super viewDidUnload];
 }
+
+/**
+ * "telling" IconPickerViewController that ListDetailViewController is its delegate
+ */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"PickIcon"])
+    {
+        IconPickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+    }
+}
+
+-(void)iconPicker:(IconPickerViewController *)picker didPickIcon:(NSString *)theIconName
+{
+    iconName = theIconName;
+    self.iconImageView.image = [UIImage imageNamed:iconName];
+    // we can't call dismissViewController because IconPicker is on the navigation stack (we used push instead of modal)
+    [self.navigationController popToViewController:picker animated:YES];
+}
+
+
 @end

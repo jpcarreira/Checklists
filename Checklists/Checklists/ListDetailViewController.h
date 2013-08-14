@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconPickerViewController.h"
 
 @class ListDetailViewController;
 @class Checklist;
@@ -17,7 +18,7 @@
 @end
 
 
-@interface ListDetailViewController : UITableViewController<UITextFieldDelegate>
+@interface ListDetailViewController : UITableViewController<UITextFieldDelegate, IconPickerViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 
