@@ -20,7 +20,10 @@
 -(void)registerDefaults
 {
     // setting the standard adding a new default for app's first time boot
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"ChecklistIndex", [NSNumber numberWithBool:YES], @"FirstTime", nil];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"ChecklistIndex",
+        [NSNumber numberWithBool:YES], @"FirstTime",
+        [NSNumber numberWithInt:0], @"ChecklistItemId",
+        nil];
     
     // giving the standard to NSUserDefaults
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
@@ -119,6 +122,24 @@
 {
     // we need to add compare to compare to Checklist
     [self.lists sortUsingSelector:@selector(compare:)];
+}
+
+/**
+ * gives a numeric ID to a checklist item
+ */
++(int)nextChecklistItemId
+{
+    // getting the current checklist itemID from NSUserDefaults
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    int itemId = [userDefaults integerForKey:@"ChecklistItemId"];
+    
+    // adding 1 to the current value and writing back to NSUserDefaults
+    [userDefaults setInteger:itemId++ forKey:@"ChecklistItemId"];
+    // synchronize forces changes to be written immediatly
+    [userDefaults synchronize];
+    
+    // returning the "old" value
+    return itemId;
 }
 
 #pragma mark - NSUserDefaults

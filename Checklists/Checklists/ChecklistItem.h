@@ -22,6 +22,15 @@
 /* ASSIGN: When you’re dealing with basic types, like ints, floats, etc. The compiler just creates a setter with 
  a simple myField = value statement. This is the default, but not usually what you want. */
 
+// date to use in local notification
+@property (nonatomic, copy) NSDate *dueDate;
+
+// marks a item for local notification
+@property (nonatomic, assign) BOOL shouldRemind;
+
+// unique ID
+@property (nonatomic, assign) int itemId;
+
 -(void) toggleChecked;
 
 @end

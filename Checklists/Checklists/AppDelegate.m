@@ -17,7 +17,9 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // local notification test
     // date corresponding to 5 seconds in the future
+    /*
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5];
     // creating a local notification object
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
@@ -27,6 +29,7 @@
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+     */
     
      return YES;
 }
