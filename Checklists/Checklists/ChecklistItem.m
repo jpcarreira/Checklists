@@ -80,7 +80,6 @@
     UILocalNotification *existingNotification = [self notificationForThisItem];
     if(existingNotification != nil)
     {
-        NSLog(@"Found an existing notification: %@", existingNotification);
         [[UIApplication sharedApplication] cancelLocalNotification:existingNotification];
     }
 
@@ -97,10 +96,16 @@
         // this is important to "mark" the notification in case we want to find and cancel it later
         localNotification.userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.itemId] forKey:@"ItemID"];
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        NSLog(@"Item: %@ -- Key: %d", localNotification, self.itemId);
     }
 }
 
+-(void)dealloc
+{
+    UILocalNotification *existingNotification = [self notificationForThisItem];
+    if(existingNotification != nil)
+    {
+        [[UIApplication sharedApplication] cancelLocalNotification:existingNotification];
+    }
+}
 
 @end

@@ -287,9 +287,9 @@
 -(void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *) item
 {
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    //label.text = item.text;
+    label.text = item.text;
     // uncomment below to test ChecklistItemID
-    label.text = [NSString stringWithFormat:@"%@ - %d", item.text, item.itemId];
+    //label.text = [NSString stringWithFormat:@"%@ - %d", item.text, item.itemId];
 }
 
 
