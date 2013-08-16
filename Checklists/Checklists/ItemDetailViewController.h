@@ -30,6 +30,11 @@
 
 @property (nonatomic, strong) ChecklistItem *itemToEdit;
 
+// properties relating due date of the checklistitem
+@property (nonatomic, strong) IBOutlet UISwitch *switchControl;
+
+@property (strong, nonatomic) IBOutlet UILabel *dueDateLabel;
+
 // delegate for itemDetailViewController
 @property (nonatomic, weak) id <ItemDetailControllerDelegate> delegate;
 

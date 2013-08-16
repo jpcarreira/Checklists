@@ -16,7 +16,10 @@
 
 @implementation ItemDetailViewController
 
-@synthesize textField, doneBarButton, delegate, itemToEdit;
+@synthesize textField, doneBarButton, delegate, itemToEdit, switchControl, dueDateLabel;
+
+// instance variable for due date that is shown in the screen
+NSDate *dueDate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,7 +39,30 @@
         self.title = @"Edit item";
         self.textField.text = self.itemToEdit.text;
         self.doneBarButton.enabled = YES;
+        // with an existing checklist item the switch being on or off will depend on the item status
+        self.switchControl.on = self.itemToEdit.shouldRemind;
+        dueDate = self.itemToEdit.dueDate;
     }
+    else
+    {
+        // with a new checklist item the control is always off
+        self.switchControl.on = NO;
+        // gets the current date -> change it for tomorrow date???
+        dueDate = [NSDate date];
+    }
+    [self updateDueDateLabel];
+}
+
+/**
+ * updates the date label
+ */
+-(void) updateDueDateLabel
+{
+    // NSDateFormatter converts a NSDate to text
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.dueDateLabel.text = [dateFormatter stringFromDate:dueDate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,11 +87,15 @@
         ChecklistItem *item = [[ChecklistItem alloc] init];
         item.text = self.textField.text;
         item.isChecked = NO;
+        item.shouldRemind = self.switchControl.on;
+        item.dueDate = dueDate;
         [self.delegate itemDetailViewController:self didFinishAddingItem:item];
     }
     else
     {
         self.itemToEdit.text = self.textField.text;
+        self.itemToEdit.shouldRemind = self.switchControl.on;
+        self.itemToEdit.dueDate = dueDate;
         [self.delegate itemDetailViewController:self didFinishEdititingItem:itemToEdit];
     }
     
@@ -93,6 +123,7 @@
 - (void)viewDidUnload {
     [self setTextField:nil];
     [self setDoneBarButton:nil];
+    [self setDueDateLabel:nil];
     [super viewDidUnload];
 }
 
