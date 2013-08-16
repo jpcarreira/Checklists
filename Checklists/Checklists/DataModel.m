@@ -134,7 +134,7 @@
     int itemId = [userDefaults integerForKey:@"ChecklistItemId"];
     
     // adding 1 to the current value and writing back to NSUserDefaults
-    [userDefaults setInteger:itemId++ forKey:@"ChecklistItemId"];
+    [userDefaults setInteger:++itemId forKey:@"ChecklistItemId"];
     // synchronize forces changes to be written immediatly
     [userDefaults synchronize];
     
