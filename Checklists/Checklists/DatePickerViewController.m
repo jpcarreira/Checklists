@@ -16,6 +16,8 @@
 
 @synthesize tableView, datePicker, delegate, date;
 
+UILabel *dateLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,6 +44,33 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - data source
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:@"DateCell"];
+    // looks for the label with tag 1000 and puts it in the ivar
+    dateLabel = (UILabel *)[cell viewWithTag:1000];
+    [self updateDateLabel];
+    return cell;
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // igoring any taps on the rows
+    return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 7;
+}
+
 #pragma mark - instance methods
 
 /**
@@ -50,6 +79,15 @@
 -(void)dateChanged
 {
     self.date = [self.datePicker date];
+    [self updateDateLabel];
+}
+
+-(void)updateDateLabel
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    dateLabel.text = [dateFormatter stringFromDate:self.date];
 }
 
 
