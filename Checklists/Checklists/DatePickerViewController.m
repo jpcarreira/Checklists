@@ -25,6 +25,13 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // setting the current date shown in the datepicker with the current date
+    [self.datePicker setDate:self.date animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,6 +41,17 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - instance methods
+
+/**
+ * storing the picked date with DatePicker in the ivar
+ */
+-(void)dateChanged
+{
+    self.date = [self.datePicker date];
+}
+
 
 #pragma mark - Actions
 

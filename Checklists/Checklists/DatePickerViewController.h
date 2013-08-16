@@ -25,6 +25,7 @@
 
 -(IBAction)cancel;
 -(IBAction)done;
+// this is connected to valueChanged event in the DatePicker object
 -(IBAction)dateChanged;
 
 @end

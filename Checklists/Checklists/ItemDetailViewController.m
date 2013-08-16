@@ -189,6 +189,8 @@ NSDate *dueDate;
 
 -(void)datePicker:(DatePickerViewController *)picker didPickDate:(NSDate *)date
 {
+    dueDate = date;
+    [self updateDueDateLabel];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
