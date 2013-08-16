@@ -114,10 +114,17 @@ NSDate *dueDate;
     [self.delegate itemDetailViewControllerDidCancel:self];
 }
 
-// disabling selections in a row
+// disabling selections in a row (except for date picking)
 -(NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    if(indexPath.row == 2)
+    {
+        return indexPath;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (void)viewDidUnload {
@@ -157,6 +164,32 @@ NSDate *dueDate;
     /* the Done button is initially enabled when the Add Item screen opens, 
      but there is no text in the text field at that point so it really should be disabled. 
      This is simple enough to fix: in the Storyboard editor, select the Done bar button and go to the Attributes Inspector and uncheck the Enabled box. */
+}
+
+/**
+ * making the current view controller a delegate of DatePickerViewController
+ */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"PickDate"])
+    {
+        DatePickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        // setting the current date in this view controller to the datepicker
+        controller.date = dueDate;
+    }
+}
+
+#pragma mark - Delegate methods DatePickerViewController
+
+-(void)datePickerDidCancel:(DatePickerViewController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)datePicker:(DatePickerViewController *)picker didPickDate:(NSDate *)date
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

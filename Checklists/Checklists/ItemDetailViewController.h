@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatePickerViewController.h"
 
 /* defining a custom delegate so that itemDetailViewController can
  communicate back to to CheckListItemViewController; the 
@@ -22,7 +23,8 @@
 /* added UITextFieldDelegate to make the ViewController a delegate of the TextField: 
  this allows the view controller to check whether there's text, 
  or not, in the textfield */
-@interface ItemDetailViewController : UITableViewController<UITextFieldDelegate>
+/* DatePickerViewController makes this viewcontroller also a delegate of DatePickerViewController */
+@interface ItemDetailViewController : UITableViewController<UITextFieldDelegate, DatePickerViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 

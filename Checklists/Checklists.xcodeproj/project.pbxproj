@@ -53,6 +53,7 @@
 		6287460C17BC0C7C00C84F56 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 6287460317BC0C7C00C84F56 /* iTunesArtwork */; };
 		62A0ABA317B7181F00BD63D2 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A0ABA217B7181F00BD63D2 /* DataModel.m */; };
 		62B0ECBB17B676B40061469D /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0ECBA17B676B40061469D /* ListDetailViewController.m */; };
+		62B2276917BEB49C00CB333C /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B2276817BEB49C00CB333C /* DatePickerViewController.m */; };
 		62BACED417BA51B0007EC64D /* IconPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BACED317BA51B0007EC64D /* IconPickerViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		62A0ABA217B7181F00BD63D2 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		62B0ECB917B676B40061469D /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
 		62B0ECBA17B676B40061469D /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
+		62B2276717BEB49C00CB333C /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		62B2276817BEB49C00CB333C /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		62BACED217BA51B0007EC64D /* IconPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconPickerViewController.h; sourceTree = "<group>"; };
 		62BACED317BA51B0007EC64D /* IconPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconPickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +212,8 @@
 				62B0ECBA17B676B40061469D /* ListDetailViewController.m */,
 				62BACED217BA51B0007EC64D /* IconPickerViewController.h */,
 				62BACED317BA51B0007EC64D /* IconPickerViewController.m */,
+				62B2276717BEB49C00CB333C /* DatePickerViewController.h */,
+				62B2276817BEB49C00CB333C /* DatePickerViewController.m */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				62B0ECBB17B676B40061469D /* ListDetailViewController.m in Sources */,
 				62A0ABA317B7181F00BD63D2 /* DataModel.m in Sources */,
 				62BACED417BA51B0007EC64D /* IconPickerViewController.m in Sources */,
+				62B2276917BEB49C00CB333C /* DatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
