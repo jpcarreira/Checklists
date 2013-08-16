@@ -45,9 +45,28 @@
     return self;
 }
 
--(void) toggleChecked
+-(void)toggleChecked
 {
     self.isChecked = !self.isChecked;
 }
+
+-(void)scheduleNotification
+{
+    // we only schedule a notification if it's checked for it and if the date is not in the past
+    if(self.shouldRemind && [self.dueDate compare:[NSDate date]] != NSOrderedAscending)
+    {
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = dueDate;
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.alertBody = self.text;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        // this is important to "mark" the notification in case we want to find and cancel it later
+        localNotification.userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.itemId] forKey:@"ItemID"];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        NSLog(@"Item: %@ -- Key: %d", localNotification, self.itemId);
+    }
+}
+
 
 @end

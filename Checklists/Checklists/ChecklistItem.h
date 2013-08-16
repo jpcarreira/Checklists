@@ -31,6 +31,8 @@
 // unique ID
 @property (nonatomic, assign) int itemId;
 
--(void) toggleChecked;
+-(void)toggleChecked;
+
+-(void)scheduleNotification;
 
 @end
