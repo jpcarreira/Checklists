@@ -50,8 +50,42 @@
     self.isChecked = !self.isChecked;
 }
 
+/**
+ * verifices if the current checklist item has already a local notification associated to it
+ */
+-(UILocalNotification *)notificationForThisItem
+{
+    NSArray *allNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in allNotifications)
+    {
+        // stores the item ID
+        NSNumber *notificationID = [notification.userInfo objectForKey:@"ItemID"];
+        // if the ID is equal to the existing ID in the notifications array
+        if((notificationID != nil) && ([notificationID intValue] == self.itemId))
+        {
+            // then we already have a notification for this item and return it
+            return notification;
+        }
+    }
+    // otherwise we return nil
+    return nil;
+}
+
+/**
+ * schedules a new LocalNotification for a given checklist item
+ */
 -(void)scheduleNotification
 {
+    // dealing with existing notifications
+    UILocalNotification *existingNotification = [self notificationForThisItem];
+    if(existingNotification != nil)
+    {
+        NSLog(@"Found an existing notification: %@", existingNotification);
+        [[UIApplication sharedApplication] cancelLocalNotification:existingNotification];
+    }
+
+    
+    
     // we only schedule a notification if it's checked for it and if the date is not in the past
     if(self.shouldRemind && [self.dueDate compare:[NSDate date]] != NSOrderedAscending)
     {
