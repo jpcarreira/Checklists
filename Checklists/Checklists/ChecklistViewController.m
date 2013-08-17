@@ -290,6 +290,17 @@
     label.text = item.text;
     // uncomment below to test ChecklistItemID
     //label.text = [NSString stringWithFormat:@"%@ - %d", item.text, item.itemId];
+
+    // putting a due date label on the table view cells under the text of the to-do item (exercice page 121, part 2)
+    UILabel *dueDateLabel = (UILabel *)[cell viewWithTag:2000];
+    if(item.shouldRemind)
+    {
+        dueDateLabel.text = [self getDueDate:item];
+    }
+    else
+    {
+        dueDateLabel.text = @"(due date not assigned)";
+    }
 }
 
 
@@ -405,4 +416,13 @@
     ChecklistItem *item = [self.checklist.items objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"EditItem" sender:item];
 }
+
+-(NSString *)getDueDate:(ChecklistItem *)item
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:[item dueDate]];
+}
+
 @end
