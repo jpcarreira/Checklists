@@ -41,7 +41,6 @@ NSDate *dueDate;
     self.doneBarButton.enabled = ([text length] > 0);
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -106,6 +105,20 @@ NSDate *dueDate;
         self.doneBarButton = nil;
         self.switchControl = nil;
         self.dueDateLabel = nil;
+    }
+}
+
+/**
+ * setter itemToEdit
+ */
+-(void)setItemToEdit:(ChecklistItem *)newItem
+{
+    if(itemToEdit != newItem)
+    {
+        itemToEdit = newItem;
+        text = itemToEdit.text;
+        shouldRemind = itemToEdit.shouldRemind;
+        dueDate = itemToEdit.dueDate;
     }
 }
 
