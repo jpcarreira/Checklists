@@ -16,24 +16,38 @@
 
 @implementation ItemDetailViewController
 
+// ivars to store screen's content of text and switch control status
+NSString *text;
+BOOL shouldRemind;
+
 @synthesize textField, doneBarButton, delegate, itemToEdit, switchControl, dueDateLabel;
 
 // instance variable for due date that is shown in the screen
 NSDate *dueDate;
 
-- (id)initWithStyle:(UITableViewStyle)style
+-(id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        text = @"";
+        shouldRemind = NO;
+        dueDate = [NSDate date];
     }
     return self;
 }
+
+-(void)updateDoneBarButton
+{
+    self.doneBarButton.enabled = ([text length] > 0);
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    // before editing didReceiceMemoryWarning
+    /*
     if(self.itemToEdit != nil)
     {
         self.title = @"Edit item";
@@ -51,6 +65,16 @@ NSDate *dueDate;
         dueDate = [NSDate date];
     }
     [self updateDueDateLabel];
+     */
+    if(self.itemToEdit != nil)
+    {
+        self.title = @"Edit item";
+    }
+    self.textField.text = text;
+    self.switchControl.on = shouldRemind;
+    
+    [self updateDoneBarButton];
+    [self updateDueDateLabel];
 }
 
 /**
@@ -65,10 +89,24 @@ NSDate *dueDate;
     self.dueDateLabel.text = [dateFormatter stringFromDate:dueDate];
 }
 
+/**
+ * this method is called when memory is low
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    if([self isViewLoaded] && self.view.window == nil)
+    {
+        self.view = nil;
+    }
+    else if(![self isViewLoaded])
+    {
+        self.textField = nil;
+        self.doneBarButton = nil;
+        self.switchControl = nil;
+        self.dueDateLabel = nil;
+    }
 }
 
 // pressing the "Done" button on the navigation bar
@@ -148,10 +186,13 @@ NSDate *dueDate;
 // verifies if text field is empty 
 -(BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    // deprecated since edited didReceiveMemoryWarning
+    /*
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     
     self.doneBarButton.enabled = ([newText length] > 0);
-    
+    */
+     
     // the if-else below is equivalent to above
     /*
     if([newText length] > 0)
@@ -163,6 +204,10 @@ NSDate *dueDate;
         self.doneBarButton.enabled = NO;
     }
     */
+    
+    // new code since edited didReceiveMemoryWarning 
+    text = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
+    [self updateDoneBarButton];
     
     return YES;
     /* the Done button is initially enabled when the Add Item screen opens, 
@@ -184,6 +229,12 @@ NSDate *dueDate;
     }
 }
 
+-(IBAction)switchChanged:(UISwitch *)sender
+{
+    shouldRemind = sender.on;
+}
+
+
 #pragma mark - Delegate methods DatePickerViewController
 
 -(void)datePickerDidCancel:(DatePickerViewController *)picker
@@ -196,6 +247,13 @@ NSDate *dueDate;
     dueDate = date;
     [self updateDueDateLabel];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)theTextField
+{
+    // if there is a spelling suggestion and the user presses Done on the keyboard, the text in the text field does change but we do not get a shouldChangeCharactersInRange notification so we handle that situation in textFieldDidEndEditing
+    text = theTextField.text;
+    [self updateDoneBarButton];
 }
 
 @end

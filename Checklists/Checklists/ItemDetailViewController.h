@@ -42,5 +42,7 @@
 
 -(IBAction)cancel;
 -(IBAction)done;
+// hooked up with switch value changed event
+-(IBAction)switchChanged:(UISwitch *)sender;
 
 @end

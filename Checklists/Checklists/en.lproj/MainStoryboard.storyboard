@@ -295,6 +295,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Wkj-Os-KJY">
                                                     <rect key="frame" x="218" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switchChanged:" destination="IkL-4T-I0N" eventType="valueChanged" id="TWH-Hi-5uL"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -508,6 +511,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <relationships>
                 <relationship kind="action" name="cancel"/>
                 <relationship kind="action" name="done"/>
+                <relationship kind="action" name="switchChanged:" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="doneBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="dueDateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="switchControl" candidateClass="UISwitch"/>
