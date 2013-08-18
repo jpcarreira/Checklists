@@ -1,23 +1,8 @@
 Checklists
 ==========
 
-A simple to-do list app for the iPhone
+A simple "to-do list" app for the iPhone!
 
+For detail information, including screenshots displaying the app's functionality, please refer to the [wiki](https://github.com/jpcarreira/Checklists/wiki/Checklists).
 
-![Main Screen](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/main_screen.png)
-
-![Adding a checklist](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/add_checklist.png)
-
-![Icon Picker](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/icon_picker.png)
-
-![Checklist](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/checklist.png)
-
-![New Items](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/add_item.png)
-
-![Edit Items](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/edit_item.png)
-
-![Delete Items](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/delete_items.png)
-
-![Date picker](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/date_picker.png)
-
-![Notifications](https://raw.github.com/jpcarreira/Checklists/master/Screenshots/notifications.png)
+This project is inspired in Matthijs Hollemans's code, available in his "iOS Apprentice Series" and open-sourcing this project has his written consent.
